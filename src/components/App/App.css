@@ -1,0 +1,25 @@
+.page {
+	max-width: 1280px;
+    font-family: 'Inter', Arial, sans-serif;
+	margin: 0 auto;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+.section__title {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    margin: 0;
+    letter-spacing: -0.04em;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 23px;
+}
+
+@media screen and (max-width: 600px) {
+    .section__title {
+        font-size: 18px;
+        line-height: 22px;
+        padding-bottom: 28px;
+    }
+}
