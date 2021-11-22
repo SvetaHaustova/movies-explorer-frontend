@@ -60,6 +60,16 @@
     position: absolute;
 }
 
+.register__message {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 19px;
+    align-self: center;
+    color: #FF3055;
+    margin: 280px 0 0;
+    position: absolute;
+}
+
 .register__button {
     font-weight: 500;
     font-size: 14px;
@@ -76,8 +86,14 @@
     transition: 0.3s;
 }
 
+.register__button:disabled {
+    opacity: 0.6;
+    background-color: #868a9e;
+    cursor: no-drop;
+}
+
 .register__button_type_login {
-    margin-top: 217px;
+    margin-top: 216px;
 }
 
 .register__button:hover {

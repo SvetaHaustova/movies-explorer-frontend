@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "./Header.css";
 import logo from "../../images/logo/logo.svg";
 import Navigation from "../Navigation/Navigation";
 
 function Header({ loggedIn, isHeaderMain }) {
     return (
-        <header className={`header ${isHeaderMain ? "header_type_main" : ""}`}>
+        <header className={`header ${isHeaderMain && "header_type_main"}`}>
             <Link to="/" className="logo-container">
                 <img className="logo" src={logo} alt="Логотип"/>
             </Link>
             {loggedIn ? (
-                <Navigation />
+                <Navigation isHeaderMain={isHeaderMain} />
             ) : (
                 <nav>
                     <ul className="header__list">
