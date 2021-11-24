@@ -2,7 +2,7 @@ import React from "react";
 import "./MoviesCardList.css";
 import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import { NOTHIHG_FOUND } from "../../utils/constants.js";
+import { NOTHIHG_FOUND, DURATION_SHORT_FILM } from "../../utils/constants.js";
 
 function MoviesCardList({
     movies,
@@ -21,7 +21,7 @@ function MoviesCardList({
     
     React.useEffect(() => {
         if (checked) {
-            const moviesShorts = movies.filter((movie) => movie.duration <= 40);
+            const moviesShorts = movies.filter((movie) => movie.duration <= DURATION_SHORT_FILM);
             setMoviesFilter(moviesShorts);
         } else {
             setMoviesFilter(movies);

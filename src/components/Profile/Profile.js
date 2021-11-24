@@ -13,13 +13,14 @@ function Profile({
     onSignOut
 }) {
     const currentUser = React.useContext(CurrentUserContext);
-    const { values, errors, isValid, handleChange } = useFormValidation();
+    const { values, errors, isValid, handleChange, resetFrom } = useFormValidation();
     const { name = currentUser.name, email = currentUser.email } = values;
 
     function handleSubmit(e) {
         e.preventDefault();
         if (isValid) {
             onUpdateUser(name, email);
+            resetFrom();
         }
     }
 

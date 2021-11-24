@@ -1,4 +1,5 @@
 const BASE_URL = "https://api.save.movies.nomoredomains.monster";
+//const BASE_URL = "http://localhost:3000";
 
 function handleCheckResponse(res) {
     if (res.ok) {
@@ -47,17 +48,6 @@ export const signOut = () => {
             return Promise.reject(`Ошибка ${res.status}`);
         }
     });
-};
-
-export const checkToken = () => {
-    return fetch(`${BASE_URL}/users/me`, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
-    .then((res) => handleCheckResponse(res));
 };
 
 export const getUserProfile = () => {

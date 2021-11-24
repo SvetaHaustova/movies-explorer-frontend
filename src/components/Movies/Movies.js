@@ -6,6 +6,18 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 import useResizeWindow from "../../hooks/useResizeWindow";
+import {
+	LARGE_SCREEN_WIDTH,
+    LARGE_SCREEN_WIDTH_SHOW,
+    LARGE_SCREEN_WIDTH_ADD,
+	MEDIUM_SCREEN_WIDTH,
+    MEDIUM_SCREEN_WIDTH_SHOW,
+    MEDIUM_SCREEN_WIDTH_ADD,
+	SMALL_SCREEN_WIDTH,
+    SMALL_SCREEN_WIDTH_SHOW,
+    SMALL_SCREEN_WIDTH_ADD,
+    SMALLEST_SCREEN_WIDTH_SHOW
+} from "../../utils/constants.js";
 
 function Movies({
     loggedIn,
@@ -26,18 +38,18 @@ function Movies({
 	const [moviesAdd, setMoviesAdd] = React.useState(0);
 
     React.useEffect(() => {
-		if (size > 1024) {
-			setMoviesShow(12);
-			setMoviesAdd(4);
-		} else if (size > 800) {
-			setMoviesShow(9);
-			setMoviesAdd(3);
-		} else if (size > 600) {
-			setMoviesShow(8);
-			setMoviesAdd(2);
+		if (size > LARGE_SCREEN_WIDTH) {
+			setMoviesShow(LARGE_SCREEN_WIDTH_SHOW);
+			setMoviesAdd(LARGE_SCREEN_WIDTH_ADD);
+		} else if (size > MEDIUM_SCREEN_WIDTH) {
+			setMoviesShow(MEDIUM_SCREEN_WIDTH_SHOW);
+			setMoviesAdd(MEDIUM_SCREEN_WIDTH_ADD);
+		} else if (size > SMALL_SCREEN_WIDTH) {
+			setMoviesShow(SMALL_SCREEN_WIDTH_SHOW);
+			setMoviesAdd(SMALL_SCREEN_WIDTH_ADD);
 		} else {
-			setMoviesShow(5);
-			setMoviesAdd(2);
+			setMoviesShow(SMALLEST_SCREEN_WIDTH_SHOW);
+			setMoviesAdd(SMALL_SCREEN_WIDTH_ADD);
 		}
 	}, [size])
 

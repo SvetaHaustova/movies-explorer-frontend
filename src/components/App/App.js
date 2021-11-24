@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
@@ -21,7 +21,8 @@ import {
 	CONFLICT_ERROR_MESSAGE,
 	BAD_REQUEST_ERROR_MESSAGE,
 	SERVER_ERROR_MESSAGE,
-	SUCCESS_UPDATE_MESSAGE
+	SUCCESS_UPDATE_MESSAGE,
+	DURATION_SHORT_FILM
 } from "../../utils/constants.js"; 
 
 function App() {
@@ -45,7 +46,7 @@ function App() {
 	const [isSuccessRequest, setIsSuccessRequest] = React.useState(false);
 
 	React.useEffect(() => {
-        if(loggedIn) {
+		if(loggedIn) {
 			Promise.all([mainApi.getUserProfile(), mainApi.getSavedMovies()])
 			.then(([user, movies]) => {
 				setCurrentUser(user);
@@ -55,20 +56,10 @@ function App() {
 			})
 			.catch((err) => {
 				console.log(err);
+				setLoggedIn(false);
 			})
 		}
     }, [loggedIn])
-
-	React.useEffect(() => {
-        mainApi.checkToken()
-        .then(() => {
-			setLoggedIn(true);
-			localStorage.setItem("loggedIn", JSON.stringify(true));
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-    }, [])
 
 	function handleCleanLocalStorageAndStates() {
 		localStorage.clear();
@@ -145,7 +136,7 @@ function App() {
 	function handleUpdateUser(name, email) {
 		mainApi.updateUserProfile(name, email)
         .then((user) => {
-            setCurrentUser(user);
+			setCurrentUser(user);
 			setIsSuccessRequest(true);
 			setMessage(SUCCESS_UPDATE_MESSAGE);
         })
@@ -176,7 +167,7 @@ function App() {
 			);
 		});
 		if (checked || checkedSaved) {
-			return foundResult.filter((movie) => movie.duration <= 40);
+			return foundResult.filter((movie) => movie.duration <= DURATION_SHORT_FILM);
 		} else {
 			return foundResult;
 		}
@@ -317,6 +308,7 @@ function App() {
 						onMovieDelete={handleMovieDelete}
 					/>
 					<Route path="/signup">
+						{loggedIn && <Redirect to="/" />}
 						<Register
 						onRegister={handleRegister}
 						message={message}
@@ -324,6 +316,7 @@ function App() {
 					/>
 					</Route>
 					<Route path="/signin">
+						{loggedIn && <Redirect to="/" />}
 						<Login
 						onLogin={handleLogin}
 						message={message}
