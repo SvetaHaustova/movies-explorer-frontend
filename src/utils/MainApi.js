@@ -1,5 +1,5 @@
-//const BASE_URL = "https://api.save.movies.nomoredomains.monster";
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://api.save.movies.nomoredomains.monster";
+//const BASE_URL = "http://localhost:3000";
 
 function handleCheckResponse(res) {
     if (res.ok) {
