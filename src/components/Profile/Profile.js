@@ -13,8 +13,13 @@ function Profile({
     onSignOut
 }) {
     const currentUser = React.useContext(CurrentUserContext);
+    const [isSameUserInfo, setIsSameUserInfo] = React.useState(false);
     const { values, errors, isValid, handleChange, resetFrom } = useFormValidation();
     const { name = currentUser.name, email = currentUser.email } = values;
+
+    React.useEffect(() => {
+        setIsSameUserInfo(name === currentUser.name && email === currentUser.email);
+    }, [name, email, currentUser.name, currentUser.email])
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -59,7 +64,7 @@ function Profile({
                             <span className="profile__input-error">{errors.email}</span>
                         </label>
                         {isSuccessRequest || isBadRequest ? <span className="profile__edit-message">{message}</span> : ""}
-                        <button className="profile__edit-button" type="submit" disabled={!isValid}>Редактировать</button>
+                        <button className="profile__edit-button" type="submit" disabled={!isValid || isSameUserInfo}>Редактировать</button>
                     </form>
                     <button className="profile__sign-out-button" type="button" onClick={onSignOut}>Выйти из аккаунта</button>
                 </section>
