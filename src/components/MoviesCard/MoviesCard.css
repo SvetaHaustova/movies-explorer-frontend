@@ -7,6 +7,8 @@
     width: 100%;
     object-fit: cover;
     background-size: 100% 100%;
+    object-position: center;
+    height: 151px;
 }
 
 .movie-card__description {
@@ -15,10 +17,11 @@
     align-items: center;
     border-bottom: 1px solid #E8E8E8;
     padding: 9px 0 25px;
+    height: 32px;
 }
 
 .movie-card__title {
-    max-width: 226px;
+    max-width: 80%;
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
@@ -83,6 +86,12 @@
     opacity: 0.7;
 }
 
+@media screen and (max-width: 800px) {
+    .movie-card__image {
+        height: 190px;
+    }
+}
+
 @media screen and (max-width: 600px) {
     .movie-card__description {
         padding-top: 11px;
@@ -91,6 +100,10 @@
     .movie-card__title {
         font-size: 12px;
         line-height: 15px;
+    }
+
+    .movie-card__image {
+        height: 168px;
     }
 
     .movie-card__duration {

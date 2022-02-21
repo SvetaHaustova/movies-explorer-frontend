@@ -1,20 +1,45 @@
 import "./SavedMovies.css";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
+import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
-function Movies({ loggedIn }) {
+function SavedMovies({
+    loggedIn,
+    isLoading,
+    movies,
+    savedMovies,
+    onSearchMovies,
+    isWasRequest,
+    onMovieDelete,
+    checked,
+    onChangeСheckbox
+}) {
     return (
         <>
             <Header loggedIn={loggedIn} />
             <main>
-                <SearchForm />
-                <MoviesCardList />
+                <SearchForm
+                    onSearchMovies={onSearchMovies}
+                    checked={checked}
+                    onChangeСheckbox={onChangeСheckbox}
+                />
+                {isLoading ?
+                    <Preloader />
+                    :
+                    <MoviesCardList
+                        movies={movies}
+                        savedMovies={savedMovies}
+                        checked={checked}
+                        isWasRequest={isWasRequest}
+                        onMovieDelete={onMovieDelete}
+                    />
+                }
             </main>
             <Footer />
         </>
     );
 }
 
-export default Movies;
+export default SavedMovies;

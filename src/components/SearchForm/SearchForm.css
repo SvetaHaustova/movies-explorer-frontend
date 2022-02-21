@@ -25,6 +25,15 @@
     box-sizing: border-box;
 }
 
+.search__input-error {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #FF3055;
+    margin: 51px 0 0;
+    position: absolute;
+}
+
 .search__button {
     padding: 0;
     border: none;
