@@ -248,10 +248,10 @@ function App() {
 		const deleteMovie = movie._id ? movie : savedMovies.find((savedMovie) => savedMovie.movieId === movie.id)
 		mainApi.deleteMovie(deleteMovie._id)
 		.then(() => {
-			const newSavedMovies = savedMovies.filter((movie) => movie._id !== deleteMovie._id)
+			const newSavedMovies = savedMovies.filter((movie) => movie._id !== deleteMovie._id);
 			setSavedMovies(newSavedMovies);
 			localStorage.setItem("savedMovies", JSON.stringify(newSavedMovies));
-			const newSavedFoundMovies = savedFoundMovies.filter((movie) => movie._id !== deleteMovie._id)
+			const newSavedFoundMovies = savedFoundMovies.filter((movie) => movie._id !== deleteMovie._id);
 			setSavedFoundMovies(newSavedFoundMovies);
 			localStorage.setItem("savedFoundMovies", JSON.stringify(newSavedFoundMovies));
 		})
